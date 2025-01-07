@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        Rumence öğreniyoruz!
+        <div class=" spacer"></div>
+        <textarea id="textInput" placeholder="Burada sizin tarafınızdan konuşulan metni göreceksiniz"></textarea>
+        <div class=" spacer"></div>
+        <button id="sendButton" onclick="speech()">Bir şey mi söylemek istiyorsun? Buraya tıklayın ve konuşun</button>
+        <div class=" spacer"></div>
+        <textarea id="textOutput" placeholder="Burada Yapay Zekanın (YZ) telaffuz ettiği cevabı göreceksiniz."></textarea>
+        <div class=" spacer"></div>
+        <button onclick="talk(outp.value)">Yapay zeka tarafından telaffuz edilen cevabı tekrar dinlemek istiyorsanız - burayı tıklayın</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+let ak = prompt('Enter apiKey');
+
+    </script>
+
+</body>
+</html>
