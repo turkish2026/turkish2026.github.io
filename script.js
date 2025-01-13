@@ -40,7 +40,7 @@
                 conversation.push(message);
 
                 // Transmitere la server
-                axios.post('http://openai-server-n8xl.onrender.com/api/chat', { messages: conversation })
+                axios.post('http://openai-server-dtoe.onrender.com/api/chat', { messages: conversation })
                     .then(response => {
                         let aiResponse = response.data.choices[0].message.content;
                         outp.value = aiResponse;
