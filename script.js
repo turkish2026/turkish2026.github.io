@@ -7,19 +7,19 @@
         let speechSynthesis = window.speechSynthesis;                // sinteză voce
 
         const speech = () => {
-            speechRecognizer.lang = 'ro-RO';
+            speechRecognizer.lang = 'tr-TR';
             // speechRecognizer.continuous = true;                      
             // speechRecognizer.interimResults = true;                  
             speechRecognizer.start();
-            sendButton.innerText = 'Vorbiți...';
+            sendButton.innerText = 'Konuşmak...';
         }
 
         const talk = (text) => {
             let textToTalk = new SpeechSynthesisUtterance(text);
             textToTalk.onend = function(event) {
-                sendButton.innerText = 'Doriți să mai spuneți ceva? Apăsați aici - și vorbiți';
+                sendButton.innerText = 'Başka bir şey söylemek ister misin? Buraya tıklayın';
             };
-            textToTalk.lang = 'ro-RO';
+            textToTalk.lang = 'tr-TR';
             textToTalk.rate = 0.5;
             // textToTalk.pitch = 1.0;
             speechSynthesis.speak(textToTalk);
@@ -32,7 +32,7 @@
 
         const requestFunc = () => {
             if (inp.value) {
-                sendButton.innerText = 'O clipă...';
+                sendButton.innerText = 'Bir dakika...';
                 let message = {
                     "role": "user",
                     "content": inp.value
@@ -54,7 +54,7 @@
                     })
                     .catch(error => {
                         console.error("Error request:", error.message);
-                        sendButton.innerText = 'Error. Try again.';
+                        sendButton.innerText = 'Hata. Tekrar deneyin.';
 
                     });
             }
