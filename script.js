@@ -1,5 +1,5 @@
 ﻿let token = null;
-fetch('https://openai-server-4d3w.onrender.com/checka',
+fetch('https://openai-server-dtoe.onrender.com/checka',
 {
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
