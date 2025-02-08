@@ -8,8 +8,7 @@ fetch('https://openai-server-dtoe.onrender.com/checka',
 .then(response => response.json())
 .then(data => {
  if (data.success) token = data.token;
- else alert('Sorry.');
- //else windows.close();
+ else alert('Scuzati - nu aveti acces...');
 })
 .catch(error => console.error('Eroare:', error));
 
