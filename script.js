@@ -45,7 +45,7 @@ const requestFunc = () => {
   sendButton.innerText = 'Bir dakika...';
   let message = { "role": "user", "content": inp.value };
   conversation.push(message);
-  axios.post('https://openai-server-KT4A.onrender.com/api/chat',
+  axios.post('https://openai-server-dtoe.onrender.com/api/chat',
   {
    messages: conversation,
    token: token
@@ -62,4 +62,5 @@ const requestFunc = () => {
   });
  }
 }
+
 
