@@ -1,4 +1,12 @@
 ﻿let token = null;
+let lastAudio = null;
+let speechSpeed = 0.7; 
+
+function repeatLast() {
+  if (!lastAudio) return;
+  new Audio(lastAudio).play();
+}
+
 const API_BASE = 'https://openai-server-dtoe.onrender.com';
 fetch(`${API_BASE}/checka`,
 {
@@ -19,7 +27,6 @@ let outp = window.document.getElementById('textOutput');
 let conversation = [];
 
 let speech2text = new webkitSpeechRecognition();
-let text2speech = window.speechSynthesis;
 
 const speech = () => {
  speech2text.lang = 'tr-TR';
@@ -31,10 +38,13 @@ const talk = async (text) => {
   try {
     const res = await axios.post(`${API_BASE}/api/tts`, {
       text: text,
-      token: token
+      token: token,
+      speed: speechSpeed
     });
 
-    const audio = new Audio(res.data.audio);
+    lastAudio = res.data.audio;
+
+    const audio = new Audio(lastAudio);
     audio.play();
 
     audio.onended = () => {
@@ -74,6 +84,7 @@ const requestFunc = () => {
   });
  }
 }
+
 
 
 
