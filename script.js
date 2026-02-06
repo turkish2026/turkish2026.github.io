@@ -26,15 +26,26 @@ const speech = () => {
  sendButton.innerText = 'Konuşmak...';
 }
 
-const talk = (text) => {
- let textToTalk = new SpeechSynthesisUtterance(text);
- textToTalk.onend = function(event) {
- sendButton.innerText = 'Başka bir şey söylemek ister misin? Buraya tıklayın';
- };
- textToTalk.lang = 'tr-TR';
- textToTalk.rate = 0.5;
- text2speech.speak(textToTalk);
-}
+const talk = async (text) => {
+  try {
+    const res = await axios.post(`${API_BASE}/api/tts`, {
+      text: text,
+      token: token
+    });
+
+    const audio = new Audio(res.data.audio);
+    audio.play();
+
+    audio.onended = () => {
+      sendButton.innerText =
+        'Doriți să mai spuneți ceva? Apăsați aici - și vorbiți';
+    };
+
+  } catch (e) {
+    console.error('TTS error:', e);
+    sendButton.innerText = 'Eroare TTS';
+  }
+};
 
 speech2text.onresult = (event) => {                    
  inp.value = event.results[0][0].transcript;
@@ -62,5 +73,6 @@ const requestFunc = () => {
   });
  }
 }
+
 
 
