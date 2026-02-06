@@ -1,5 +1,6 @@
 ﻿let token = null;
-fetch('https://openai-server-dtoe.onrender.com/checka',
+const API_BASE = 'https://openai-server-dtoe.onrender.com';
+fetch(`${API_BASE}/checka`,
 {
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
@@ -56,7 +57,7 @@ const requestFunc = () => {
   sendButton.innerText = 'Bir dakika...';
   let message = { "role": "user", "content": inp.value };
   conversation.push(message);
-  axios.post('https://openai-server-dtoe.onrender.com/api/chat',
+  axios.post(`${API_BASE}/api/chat`,
   {
    messages: conversation,
    token: token
@@ -73,6 +74,7 @@ const requestFunc = () => {
   });
  }
 }
+
 
 
 
