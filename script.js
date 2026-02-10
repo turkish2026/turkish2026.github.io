@@ -1,4 +1,4 @@
-﻿let token = null;
+let token = null;
 let lastAudio = null;
 let speechSpeed = 0.7; 
 
@@ -8,16 +8,23 @@ function repeatLast() {
 }
 
 const API_BASE = 'https://openai-server-dtoe.onrender.com';
+const params = new URLSearchParams(window.location.search);
+
 fetch(`${API_BASE}/checka`,
 {
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ aaa: new URLSearchParams(window.location.search).get('aaa') })
+ body: JSON.stringify({ 
+  aaa: params.get('aaa'),
+  t: params.get('t'),
+  s: params.get('s')
+ })
 })
+
 .then(response => response.json())
 .then(data => {
  if (data.success) token = data.token;
- else alert('Scuzati - nu aveti acces...');
+ else alert('Sorry.');
 })
 .catch(error => console.error('Eroare:', error));
 
@@ -49,7 +56,7 @@ const talk = async (text) => {
 
     audio.onended = () => {
       sendButton.innerText =
-        'Doriți să mai spuneți ceva? Apăsați aici - și vorbiți';
+        'Yapay zeka tarafından telaffuz edilen cevabı tekrar dinlemek istiyorsanız - burayı tıklayın';
     };
 
   } catch (e) {
@@ -67,6 +74,7 @@ const requestFunc = () => {
   sendButton.innerText = 'Bir dakika...';
   let message = { "role": "user", "content": inp.value };
   conversation.push(message);
+
   axios.post(`${API_BASE}/api/chat`,
   {
    messages: conversation,
@@ -80,12 +88,7 @@ const requestFunc = () => {
   })
   .catch(error => {
    console.error("Error request:", error.message);
-   sendButton.innerText = 'Eroare API_KEY';
+   sendButton.innerText = 'Hata...';
   });
  }
 }
-
-
-
-
-
