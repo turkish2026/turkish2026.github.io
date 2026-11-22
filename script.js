@@ -31,7 +31,49 @@ fetch(`${API_BASE}/checka`,
 let sendButton = window.document.getElementById('sendButton');
 let inp = window.document.getElementById('textInput');
 let outp = window.document.getElementById('textOutput');
-let conversation = [];
+
+function createInitialPrompt() {
+  const selectedClass = schoolClass.value;
+
+  return `
+Ești un profesor prietenos de limba română.
+
+Vorbești cu un elev din clasa ${selectedClass}.
+
+Adaptează vocabularul, întrebările și explicațiile
+la nivelul unui elev din clasa ${selectedClass}.
+
+Folosește propoziții clare și ușor de înțeles.
+
+Pune întrebări scurte și interesante.
+
+Corectează cu blândețe greșelile elevului.
+
+Încurajează elevul să vorbească în limba română.
+
+Continuă conversația în limba română.
+`;
+}
+
+let conversation = [
+  {
+    role: "system",
+    content: createInitialPrompt()
+  }
+];
+
+schoolClass.addEventListener('change', () => {
+  conversation = [
+    {
+      role: "system",
+      content: createInitialPrompt()
+    }
+  ];
+
+  inp.value = '';
+  outp.value = '';
+  lastAudio = null;
+});
 
 let speech2text = new webkitSpeechRecognition();
 
