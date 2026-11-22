@@ -37,3 +37,23 @@ font-weight: bold;
 #textOutput::placeholder {
 font-weight: bold;
 }
+
+.classSelector {
+  margin: 15px 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.classSelector label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#schoolClass {
+  font-size: 20px;
+  padding: 8px 15px;
+  border: 2px solid #4682B4;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}
